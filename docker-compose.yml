@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  varada:
+    image: varada/varada:latest
+    privileged: true
+    volumes:
+      - /usr/lib/presto/:/usr/lib/presto
+      - /var/log/presto/:/var/log/presto
+      - /usr/lib/varada/:/usr/lib/varada
+      - /etc/presto/:/etc/presto/
+      - /etc/varada/:/etc/varada/
+      - /var/lib/presto/:/var/lib/presto
+    environment:
+      - IS_BACKEND=false
+      - IS_COORDINATOR=true
+      - IS_STANDALONE=false
+      - CONFIG_PATH=<S3-PATH>/varada
+      - POST_INSTALL_PARAMS=
+      - POST_INSTALL_SCRIPT=null
+    expose:
+      - 8080
+      - 8088
+      - 8089
+    ports:
+      - 8080:8080
+      - 8089:8089
+      - 8088:8088
+    ulimits:
+      nofile:
+        soft: 8192
+        hard: 8192
+      core: 0
+  accelerator:
+    image: varada/accelerator:latest
+    ports:
+      - 8000:8000
+    environment:
+      - AWS_REGION=<AWS-REGION>
+    restart: on-failure:10
+    container_name: accelerator
+  deployer:
+    image: varada/deployer:latest
+    ports:
+      - 8001:8001
+    environment:
+      - AWS_REGION=<AWS-REGION>
+    restart: on-failure:10
+    container_name: deployer
+  clustermanager:
+    image: varada/clustermanager:latest
+    ports:
+      - 8888:8888
+    environment:
+      - AWS_REGION=<AWS-REGION>
+      - EXTRA_PARAMS=-Ddw.server.applicationConnectors[0].port=8888 -Ddw.presto.coordinatorHost=varada -Ddw.presto.coordinatorPort=8080 -Ddw.presto.coordinatorVaradaPort=8088 -Ddw.presto.s3location=<S3-PATH>/vcc -Ddw.presto.cmSchema=<CLUSTER-MANAGER-SCHEMA> -Ddw.presto.analyticsSchema= -Ddw.services.collector.url=http://accelerator:8000 -Ddw.services.extractor.url=http://accelerator:8000 -Ddw.services.analytics.url=http://accelerator:8000
+    restart: on-failure:10
+    container_name: clustermanager
