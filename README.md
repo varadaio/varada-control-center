@@ -19,9 +19,7 @@ sudo chmod +x /usr/bin/docker-compose
 ---
 ## Configure
 Open the `docker-compose.yaml` file and change the following place holders to fit your environment:
-- S3-PATH: A valid S3 path to save cluster metadata.
 - AWS-REGION: Your current AWS region.
-- CLUSTER-MANAGER-SCHEMA: A unique name for the cluster manager schema in the Glue or Hive metastore
 ---
 ## Run
 In the same folder as the `docker-compose.yaml` file run the following command:
