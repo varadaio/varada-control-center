@@ -15,7 +15,6 @@ services:
       - IS_BACKEND=false
       - IS_COORDINATOR=true
       - IS_STANDALONE=false
-      - CONFIG_PATH=<S3-PATH>/varada
       - POST_INSTALL_PARAMS=
       - POST_INSTALL_SCRIPT=null
     expose:
@@ -53,6 +52,6 @@ services:
       - 8888:8888
     environment:
       - AWS_REGION=<AWS-REGION>
-      - EXTRA_PARAMS=-Ddw.server.applicationConnectors[0].port=8888 -Ddw.presto.coordinatorHost=varada
+      - EXTRA_PARAMS=-Ddw.server.applicationConnectors[0].port=8888 -Ddw=awsRegion=<AWS-REGION> -Ddw.presto.coordinatorHost=varada
     restart: on-failure:10
     container_name: clustermanager
