@@ -8,11 +8,12 @@ services:
       - /usr/lib/presto/:/usr/lib/presto
       - /var/log/presto/:/var/log/presto
       - /usr/lib/varada/:/usr/lib/varada
+      - /opt/varada/config/:/opt/varada/config
       - /etc/presto/:/etc/presto/
       - /etc/varada/:/etc/varada/
       - /var/lib/presto/:/var/lib/presto
     environment:
-      - IS_BACKEND=false
+      - IS_BACKEND=true
       - IS_COORDINATOR=true
       - IS_STANDALONE=false
       - POST_INSTALL_PARAMS=
@@ -48,6 +49,8 @@ services:
     container_name: deployer
   clustermanager:
     image: varada/clustermanager:latest
+    volumes:
+      - /opt/varada/config/:/opt/varada/config
     ports:
       - 8888:8888
     environment:
