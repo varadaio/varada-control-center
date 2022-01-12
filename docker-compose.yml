@@ -37,7 +37,6 @@ services:
     ports:
       - 8000:8000
     environment:
-      - AWS_REGION=<AWS-REGION>
     restart: on-failure:10
     container_name: accelerator
   deployer:
@@ -45,7 +44,6 @@ services:
     ports:
       - 8001:8001
     environment:
-      - AWS_REGION=<AWS-REGION>
     restart: on-failure:10
     container_name: deployer
   clustermanager:
@@ -55,7 +53,6 @@ services:
     ports:
       - 8888:8888
     environment:
-      - AWS_REGION=<AWS-REGION>
-      - EXTRA_PARAMS=-Ddw.server.applicationConnectors[0].port=8888 -Ddw=awsRegion=<AWS-REGION> -Ddw.presto.coordinatorHost=varada
+      - EXTRA_PARAMS=-Ddw.server.applicationConnectors[0].port=8888 -Ddw.presto.coordinatorHost=varada
     restart: on-failure:10
     container_name: clustermanager

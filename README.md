@@ -18,11 +18,12 @@ sudo chmod +x /usr/bin/docker-compose
 ```
 ---
 ## Configure
-Open the `docker-compose.yaml` file and change the following place holders to fit your environment:
-- AWS-REGION: Your current AWS region.
+```
+curl https://raw.githubusercontent.com/varadaio/varada-control-center/main/docker-compose.yml > docker-compose.yml
+```
 ---
 ## Run
 In the same folder as the `docker-compose.yaml` file run the following command:
 ```
-docker-compose up -d
+sudo docker-compose up -d
 ```
