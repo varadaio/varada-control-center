@@ -36,14 +36,12 @@ services:
     image: varada/accelerator:latest
     ports:
       - 8000:8000
-    environment:
     restart: on-failure:10
     container_name: accelerator
   deployer:
     image: varada/deployer:latest
     ports:
       - 8001:8001
-    environment:
     restart: on-failure:10
     container_name: deployer
   clustermanager:

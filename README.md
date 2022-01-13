@@ -1,7 +1,6 @@
 # Varada Control Center
 To start working with the Varada Control Center and spinning up Varada clusters, complete the following steps:
  - [Setup](#set-up)
- - [Configure](#Configure)
  - [Run](#Run)
 ---
 ## Set Up
@@ -17,13 +16,9 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/bin/docker-compose
 ```
 ---
-## Configure
+## Run
+Run the following commands:
 ```
 curl https://raw.githubusercontent.com/varadaio/varada-control-center/main/docker-compose.yml > docker-compose.yml
-```
----
-## Run
-In the same folder as the `docker-compose.yaml` file run the following command:
-```
 sudo docker-compose up -d
 ```
