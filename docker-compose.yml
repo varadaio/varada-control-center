@@ -33,19 +33,19 @@ services:
       core: 0
     container_name: varada
   accelerator:
-    image: varada/accelerator:0.2.14
+    image: varada/accelerator:0.2.15
     ports:
       - 8000:8000
     restart: on-failure:10
     container_name: accelerator
   deployer:
-    image: varada/deployer:0.2.14
+    image: varada/deployer:0.2.15
     ports:
       - 8001:8001
     restart: on-failure:10
     container_name: deployer
   clustermanager:
-    image: varada/clustermanager:0.2.14
+    image: varada/clustermanager:0.2.15
     volumes:
       - /opt/varada/config/:/opt/varada/config
     ports:
