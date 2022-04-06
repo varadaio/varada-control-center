@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   varada:
-    image: varada/varada:364.14.15-varada
+    image: varada/varada:364.14.17-varada
     privileged: true
     volumes:
       - /usr/lib/presto/:/usr/lib/presto
@@ -33,19 +33,19 @@ services:
       core: 0
     container_name: varada
   accelerator:
-    image: varada/accelerator:0.2.15
+    image: varada/accelerator:0.2.16
     ports:
       - 8000:8000
     restart: on-failure:10
     container_name: accelerator
   deployer:
-    image: varada/deployer:0.2.15
+    image: varada/deployer:0.2.16
     ports:
       - 8001:8001
     restart: on-failure:10
     container_name: deployer
   clustermanager:
-    image: varada/clustermanager:0.2.15
+    image: varada/clustermanager:0.2.16
     volumes:
       - /opt/varada/config/:/opt/varada/config
     ports:
